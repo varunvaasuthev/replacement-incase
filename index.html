@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Beijing 5D4N Ultimate Tour Package</title>
+    <style>
+        /* --- Color Palette & Base Styles --- */
+        :root {
+            --primary-color: #d32f2f;
+            --secondary-color: #1a1a1a;
+            --light-bg: #f5f7fa;
+            --card-bg: #ffffff;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--secondary-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Language Engine Visibility --- */
+        body.show-en .lang-ms { display: none !important; }
+        body.show-ms .lang-en { display: none !important; }
+
+        /* --- Header & Hero Section --- */
+        header {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('download_Nero_AI_Image_Upscaler_Photo.jpeg') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 140px 20px;
+            position: relative;
+        }
+
+        /* Top Controls Layer (Language Selector) */
+        .top-controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 12px;
+        }
+
+        .top-controls select {
+            padding: 8px 16px;
+            border-radius: 25px;
+            border: 2px solid white;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            font-weight: bold;
+            font-size: 0.9rem;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .top-controls select:hover {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .hero-title h1 {
+            font-size: 3.8rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .hero-title p {
+            font-size: 1.3rem;
+            max-width: 750px;
+            margin: 0 auto;
+            opacity: 0.95;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+        }
+
+        .price-badge {
+            background-color: var(--primary-color);
+            color: white;
+            display: inline-block;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-size: 2.1rem;
+            font-weight: bold;
+            margin-top: 25px;
+            box-shadow: 0 8px 20px rgba(211, 47, 47, 0.5);
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .price-badge span {
+            font-size: 0.9rem;
+            display: block;
+            font-weight: normal;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2px;
+        }
+
+        /* --- Layout Containers --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin: 50px 0 40px 0;
+        }
+
+        .section-title {
+            display: inline-block;
+            border-bottom: 4px solid var(--primary-color);
+            padding-bottom: 8px;
+            font-size: 2.2rem;
+            margin: 0;
+            color: var(--secondary-color);
+        }
+
+        /* --- Grid & Uniform Card Layouts --- */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+            align-items: stretch;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            border-left: 6px solid var(--primary-color);
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card p {
+            margin-bottom: 0;
+            flex-grow: 1;
+        }
+
+        /* --- Timeline Itinerary --- */
+        .timeline {
+            position: relative;
+            max-width: 850px;
+            margin: 0 auto 50px auto;
+        }
+
+        .timeline-item {
+            padding: 25px 35px;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            border-left: 6px solid var(--secondary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(10px);
+            border-left-color: var(--primary-color);
+        }
+
+        .timeline-day {
+            font-weight: 800;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .timeline-item h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.5rem;
+        }
+
+        /* --- Form & CTA Block --- */
+        .cta-box {
+            background: linear-gradient(135deg, var(--secondary-color), #333333);
+            color: white;
+            padding: 50px 40px;
+            border-radius: 15px;
+            margin-top: 60px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .cta-box-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .cta-box h2 {
+            margin-top: 0;
+            font-size: 2.2rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .full-width { grid-column: span 2; }
+        
+        .form-section-title {
+            grid-column: span 2;
+            color: #fff;
+            font-size: 1.3rem;
+            margin: 25px 0 5px 0;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 8px;
+            text-align: left;
+        }
+
+        .form-group { display: flex; flex-direction: column; text-align: left; }
+        .form-group label { font-weight: bold; font-size: 0.9rem; margin-bottom: 8px; color: #e0e0e0; }
+        
+        .form-group input, .form-group select, .form-group textarea {
+            padding: 12px;
+            border: 1px solid #444;
+            border-radius: 6px;
+            font-size: 1rem;
+            background-color: rgba(255, 255, 255, 0.08);
+            color: white;
+            outline: none;
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--primary-color);
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .form-group select option {
+            background-color: #333;
+            color: white;
+        }
+
+        .form-submit-container {
+            text-align: center;
+            grid-column: span 2;
+            margin-top: 25px;
+        }
+
+        .cta-btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(211, 47, 47, 0.3);
+        }
+
+        .cta-btn:hover {
+            background-color: #b71c1c;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 600px) {
+            .form-grid { grid-template-columns: 1fr; }
+            .full-width, .form-section-title, .form-submit-container { grid-column: span 1; }
+            .hero-title h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body class="show-en">
+
+    <!-- Top Language Selection Menu Layout -->
+    <div class="top-controls">
+        <select id="langSelect" onchange="changeLanguage(this.value)">
+            <option value="en">🇬🇧 English</option>
+            <option value="ms">🇲🇾 Bahasa Melayu</option>
+        </select>
+    </div>
+
+    <!-- Header / Hero Segment -->
+    <header>
+        <div class="hero-title">
+            <h1>
+                <span class="lang-en">Discover Beijing</span>
+                <span class="lang-ms">Terokai Beijing</span>
+            </h1>
+            <p>
+                <span class="lang-en">A Journey Through Dynasties and Icons — Where Imperial History Meets Modern Majesty</span>
+                <span class="lang-ms">Perjalanan Melalui Dinasti dan Ikon — Di Mana Sejarah Empayar Bertemu Kemodenan</span>
+            </p>
+            <div class="price-badge">
+                <span class="lang-en">Promo Rate</span>
+                <span class="lang-ms">Kadar Promosi</span>
+                RM 3,050 
+                <span class="lang-en">/ person</span>
+                <span class="lang-ms">/ seorang</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <!-- Section: Package Includes -->
+        <div class="section-header">
+            <h2 class="section-title">
+                <span class="lang-en">Package Includes!</span>
+                <span class="lang-ms">Pakej Termasuk!</span>
+            </h2>
+        </div>
+        
+        <div class="grid">
+            <div class="card">
+                <h3>
+                    <span class="lang-en">✈️ China Northern Airlines</span>
+                    <span class="lang-ms">✈️ Penerbangan China Northern</span>
+                </h3>
+                <p>
+                    <span class="lang-en">Round-trip economy flights with premium inflight meals and baggage allowance included.</span>
+                    <span class="lang-ms">Penerbangan pergi-balik kelas ekonomi bersama hidangan premium dan bagasi disertakan.</span>
+                </p>
+            </div>
+            <div class="card">
+                <h3>
+                    <span class="lang-en">🚄 Premium Logistics</span>
+                    <span class="lang-ms">🚄 Pengangkutan Premium</span>
+                </h3>
+                <p>
+                    <span class="lang-en">High-speed rail experience directly to the Great Wall & climate-controlled private coaches.</span>
+                    <span class="lang-ms">Pengalaman kereta api laju terus ke Tembok Besar & bas persiaran peribadi berhawa dingin.</span>
+                </p>
+            </div>
+            <div class="card">
+                <h3>
+                    <span class="lang-en">🎟️ VIP All-Access</span>
+                    <span class="lang-ms">🎟️ Akses Penuh VIP</span>
+                </h3>
+                <p>
+                    <span class="lang-en">All entry fees to designated attractions and an expert English/Malay speaking local guide.</span>
+                    <span class="lang-ms">Semua bayaran masuk tempat tarikan dan pemandu pelancong tempatan pakar dwi-bahasa.</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Section: Top Destinations -->
+        <div class="section-header">
+            <h2 class="section-title">
+                <span class="lang-en">Top Destinations & Highlights</span>
+                <span class="lang-ms">Destinasi & Tarikan Utama</span>
+            </h2>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h3>
+                    <span class="lang-en">⛰️ The Great Wall</span>
+                    <span class="lang-ms">⛰️ Tembok Besar China</span>
+                </h3>
+                <p>
+                    <span class="lang-en">Trek along the legendary, winding mountain ridges of the Mutianyu section with stunning panoramic views.</span>
+                    <span class="lang-ms">Mendaki permatang gunung legenda yang bengkak-bengkok di bahagian Mutianyu dengan pemandangan panaroma yang menakjubkan.</span>
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>
+                    <span class="lang-en">🏯 The Forbidden City</span>
+                    <span class="lang-ms">🏯 Kota Larangan</span>
+                </h3>
+                <p>
+                    <span class="lang-en">Walk through the majestic gates of the massive Imperial Palace and stand in awe of historic dynasties.</span>
+                    <span class="lang-ms">Berjalan melalui pintu gerbang megah di Istana Empayar yang luas dan hayati sejarah dinasti purba.</span>
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>
+                    <span class="lang-en">🚲 Hutong & Peking Duck 🍖</span>
+                    <span class="lang-ms">🚲 Hutong & Itik Peking 🍖</span>
+                </h3>
+                <p>
+                    <span class="lang-en">Take a traditional Rickshaw ride through historic <strong>Hutong Alleys</strong> followed by an authentic <strong>Peking Duck Banquet</strong>.</span>
+                    <span class="lang-ms">Naiki beca tradisional melalui <strong>Lorong Lama Hutong</strong> diikuti dengan jamuan makan malam <strong>Itik Peking</strong> yang asli.</span>
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>
+                    <span class="lang-en">🌳 The Summer Palace</span>
+                    <span class="lang-ms">🌳 Istana Musim Panas</span>
+                </h3>
+                <p>
+                    <span class="lang-en">Relax amidst the breathtaking landscapes, peaceful royal pavilions, and serene lakes of the ancient Emperors.</span>
+                    <span class="lang-ms">Bertenang di tengah-tengah landskap yang indah, paviliun diraja, dan tasik yang tenang milik Maharaja purba.</span>
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>
+                    <span class="lang-en">🏟️ Olympic Landmarks</span>
+                    <span class="lang-ms">🏟️ Mercu Tanda Olimpik</span>
+                </h3>
+                <p>
+                    <span class="lang-en">Capture spectacular photographs at iconic architectural masterpieces like the Bird's Nest and the Water Cube.</span>
+                    <span class="lang-ms">Ambil foto yang menakjubkan di karya seni bina ikonik seperti Stadium Sarang Burung dan Kiub Air.</span>
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>
+                    <span class="lang-en">🎡 Universal Studios</span>
+                    <span class="lang-ms">🎡 Universal Studios Beijing</span>
+                </h3>
+                <p>
+                    <span class="lang-en">Experience an action-packed, thrilling day of blockbuster entertainment and world-class movie magic rides.</span>
+                    <span class="lang-ms">Alami hari yang penuh keriangan dengan hiburan blockbuster hebat dan tarikan taman tema bertaraf dunia.</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Section: 5D4N Itinerary Plan -->
+        <div class="section-header">
+            <h2 class="section-title">
+                <span class="lang-en">Ultimate 5D4N Itinerary Plan</span>
+                <span class="lang-ms">Pelan Itinerary 5H4M Utama</span>
+            </h2>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-day">
+                    <span class="lang-en">DAY 1</span>
+                    <span class="lang-ms">HARI 1</span>
+                </div>
+                <h3>
+                    <span class="lang-en">Arrival & Imperial Legends</span>
+                    <span class="lang-ms">Ketibaan & Legenda Empayar</span>
+                </h3>
+                <p>
+                    <span class="lang-en">Land via China Northern Airlines. Stand in awe at the historic <strong>Tiananmen Square</strong> and walk deep into <strong>The Forbidden City</strong>.</span>
+                    <span class="lang-ms">Tiba melalui China Northern Airlines. Berdiri di <strong>Dataran Tiananmen</strong> yang bersejarah dan jalan masuk ke <strong>Kota Larangan (The Forbidden City)</strong>.</span>
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-day">
+                    <span class="lang-en">DAY 2</span>
+                    <span class="lang-ms">HARI 2</span>
+                </div>
+                <h3>
+                    <span class="lang-en">The Great Wall & Culinary Icons</span>
+                    <span class="lang-ms">Tembok Besar & Ikon Kulinari</span>
+                </h3>
+                <p>
+                    <span class="lang-en">Take a premium high-speed rail experience to <strong>The Great Wall (Mutianyu)</strong>. In the evening, treat your tastebuds to a world-famous, authentic <strong>Peking Duck</strong> dinner.</span>
+                    <span class="lang-ms">Alami kereta api laju ke <strong>Tembok Besar (Mutianyu)</strong>. Di sebelah malam, nikmati hidangan asli <strong>Itik Peking (Peking Duck)</strong> yang terkenal di dunia.</span>
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-day">
+                    <span class="lang-en">DAY 3</span>
+                    <span class="lang-ms">HARI 3</span>
+                </div>
+                <h3>
+                    <span class="lang-en">Movie Magic & Thrills</span>
+                    <span class="lang-ms">Keajaiban Filem & Keriangan</span>
+                </h3>
+                <p>
+                    <span class="lang-en">Spend a full, action-packed day inside <strong>Universal Studios Beijing</strong> exploring cinematic worlds and rides.</span>
+                    <span class="lang-ms">Satu hari penuh di <strong>Universal Studios Beijing</strong> menerokai dunia perfileman dan pelbagai permainan menakjubkan.</span>
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-day">
+                    <span class="lang-en">DAY 4</span>
+                    <span class="lang-ms">HARI 4</span>
+                </div>
+                <h3>
+                    <span class="lang-en">Royal Retreats & Cultural Alleys</span>
+                    <span class="lang-ms">Keindahan Diraja & Lorong Budaya</span>
+                </h3>
+                <p>
+                    <span class="lang-en">Stroll across the serene lakes of <strong>The Summer Palace</strong>. Later, climb onto a traditional Rickshaw for a culture-filled ride through local <strong>Hutong Alleyway Tours</strong>.</span>
+                    <span class="lang-ms">Bersiar-siar di sekitar tasik yang tenang di <strong>Istana Musim Panas (The Summer Palace)</strong>. Kemudian, naiki beca tradisional untuk menerokai warisan budaya di sekitar lorong kuno <strong>Hutong</strong>.</span>
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-day">
+                    <span class="lang-en">DAY 5</span>
+                    <span class="lang-ms">HARI 5</span>
+                </div>
+                <h3>
+                    <span class="lang-en">Modern Landmarks & Farewell</span>
+                    <span class="lang-ms">Ikon Moden & Selamat Tinggal</span>
+                </h3>
+                <p>
+                    <span class="lang-en">Visit Beijing's breathtaking modern architecture at the <strong>Olympic Landmarks</strong> (The Bird's Nest & Water Cube) for photos before heading to the airport.</span>
+                    <span class="lang-ms">Lawati seni bina moden ikonik di <strong>Landmark Olimpik</strong> (Sarang Burung & Kiub Air) untuk sesi bergambar sebelum menuju ke lapangan terbang untuk pulang.</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Call to Action Booking Form Section -->
+        <div class="cta-box" id="booking-section">
+            <div class="cta-box-header">
+                <h2>
+                    <span class="lang-en">Apply & Book Your Trip</span>
+                    <span class="lang-ms">Mohon & Tempah Perjalanan Anda</span>
+                </h2>
+                <p>
+                    <span class="lang-en">Please provide accurate details below for visa processing and flight arrangements.</span>
+                    <span class="lang-ms">Sila berikan maklumat yang tepat di bawah untuk pemprosesan visa dan urusan penerbangan.</span>
+                </p>
+            </div>
+
+            <form action="https://formspree.io/f/xdavyaev" method="POST" class="form-grid">
+
+                <!-- SECTION 1: Personal Info -->
+                <div class="form-section-title">
+                    <span class="lang-en">1. Personal Information</span>
+                    <span class="lang-ms">1. Maklumat Peribadi</span>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="full_name"><span class="lang-en">Full Name (As in Passport)</span><span class="lang-ms">Nama Penuh (Seperti dalam Pasport)</span></label>
+                    <input type="text" id="full_name" name="full_name" placeholder="John Doe" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="gender"><span class="lang-en">Gender</span><span class="lang-ms">Jantina</span></label>
+                    <select id="gender" name="gender" required>
+                        <option value="" disabled selected id="gender_placeholder">-- Select Option --</option>
+                        <option value="Male" id="gender_m">Male</option>
+                        <option value="Female" id="gender_f">Female</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="dob"><span class="lang-en">Date of Birth</span><span class="lang-ms">Tarikh Lahir</span></label>
+                    <input type="date" id="dob" name="dob" required />
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="nationality"><span class="lang-en">Nationality</span><span class="lang-ms">Kewarganegaraan</span></label>
+                    <input type="text" id="nationality" name="nationality" placeholder="e.g. Malaysian" required />
+                </div>
+
+                <!-- SECTION 2: Passport Info -->
+                <div class="form-section-title">
+                    <span class="lang-en">2. Passport Details</span>
+                    <span class="lang-ms">2. Maklumat Pasport</span>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="passport_number"><span class="lang-en">Passport Number</span><span class="lang-ms">Nombor Pasport</span></label>
+                    <input type="text" id="passport_number" name="passport_number" placeholder="A12345678" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="passport_issue"><span class="lang-en">Date of Issue</span><span class="lang-ms">Tarikh Dikeluarkan</span></label>
+                    <input type="date" id="passport_issue" name="passport_issue" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="passport_expiry"><span class="lang-en">Date of Expiry</span><span class="lang-ms">Tarikh Tamat Tempoh</span></label>
+                    <input type="date" id="passport_expiry" name="passport_expiry" required />
+                </div>
+
+                <!-- SECTION 3: Contact Info -->
+                <div class="form-section-title">
+                    <span class="lang-en">3. Contact Information</span>
+                    <span class="lang-ms">3. Maklumat Perhubungan</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="email"><span class="lang-en">Email Address</span><span class="lang-ms">Alamat Emel</span></label>
+                    <input type="email" id="email" name="_replyto" placeholder="johndoe@example.com" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="phone"><span class="lang-en">Phone Number</span><span class="lang-ms">Nombor Telefon</span></label>
+                    <input type="tel" id="phone" name="phone" placeholder="+60123456789" required />
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="address"><span class="lang-en">Current Home Address</span><span class="lang-ms">Alamat Kediaman Semasa</span></label>
+                    <textarea id="address" name="address" rows="3" placeholder="Enter full address..." required></textarea>
+                </div>
+
+                <!-- SECTION 4: Flight Schedule -->
+                <div class="form-section-title">
+                    <span class="lang-en">4. Flight Schedule</span>
+                    <span class="lang-ms">4. Jadual Penerbangan</span>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="arrival_date"><span class="lang-en">Expected Arrival Date</span><span class="lang-ms">Tarikh Ketibaan Dijangka</span></label>
+                    <input type="date" id="arrival_date" name="arrival_date" required />
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="departure_date"><span class="lang-en">Expected Departure Date</span><span class="lang-ms">Tarikh Berlepas Dijangka</span></label>
+                    <input type="date" id="departure_date" name="departure_date" required />
+                </div>
+
+                <!-- Submit Button -->
+                <div class="form-submit-container">
+                    <button type="submit" class="cta-btn">
+                        <span class="lang-en">Submit Application & Book Now</span>
+                        <span class="lang-ms">Hantar Permohonan & Tempah Sekarang</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </main>
+
+    <!-- App Engine JavaScript -->
+    <script>
+        function changeLanguage(lang) {
+            // Adjust current body engine context
+            document.body.className = 'show-' + lang;
+            
+            // Dynamic form configuration elements
+            const pageTitle = document.getElementById('page-title');
+            const genderPlaceholder = document.getElementById('gender_placeholder');
+            const genderM = document.getElementById('gender_m');
+            const genderF = document.getElementById('gender_f');
+            const inputNat = document.getElementById('nationality');
+            const inputAddr = document.getElementById('address');
+            
+            if(lang === 'ms') {
+                pageTitle.innerText = "Pakej Pelancongan 5H4M Utama Beijing";
+                genderPlaceholder.innerText = "-- Pilih Jantina --";
+                genderM.innerText = "Lelaki";
+                genderF.innerText = "Perempuan";
+                inputNat.setAttribute('placeholder', 'cth. Warganegara Malaysia');
+                inputAddr.setAttribute('placeholder', 'Masukkan alamat penuh...');
+            } else {
+                pageTitle.innerText = "Beijing 5D4N Ultimate Tour Package";
+                genderPlaceholder.innerText = "-- Select Option --";
+                genderM.innerText = "Male";
+                genderF.innerText = "Female";
+                inputNat.setAttribute('placeholder', 'e.g. Malaysian');
+                inputAddr.setAttribute('placeholder', 'Enter full address...');
+            }
+        }
+    </script>
+</body>
+</html>
