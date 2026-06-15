@@ -27,6 +27,33 @@
         body.show-en .lang-ms { display: none !important; }
         body.show-ms .lang-en { display: none !important; }
 
+        /* --- Floating Music Button --- */
+        .music-btn {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: var(--primary-color);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+            padding: 12px 22px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .music-btn:hover {
+            background-color: #b71c1c;
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(211, 47, 47, 0.5);
+        }
+
         /* --- Header & Hero Section --- */
         header {
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('download_Nero_AI_Image_Upscaler_Photo.jpeg') no-repeat center center/cover;
@@ -311,8 +338,16 @@
 </head>
 <body class="show-en">
 
+    <!-- Floating Play/Pause Button -->
+    <button id="music-toggle-btn" class="music-btn" onclick="toggleMusic()">
+        <span id="music-icon">🎵</span> 
+        <span class="lang-en music-text">Play Music</span>
+        <span class="lang-ms music-text">Mainkan Muzik</span>
+    </button>
+
+    <!-- Invisible Container for YouTube API -->
     <div id="audio-container" style="position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none;">
-        <iframe id="bg-music" width="0" height="0" src="https://www.youtube.com/embed/GwyXQO0tSW4?enablejsapi=1&controls=0&rel=0&showinfo=0&start=303" frameborder="0" allow="autoplay"></iframe>
+        <div id="bg-music"></div>
     </div>
 
     <div class="top-controls">
@@ -343,6 +378,7 @@
     </header>
 
     <main class="container">
+        <!-- Section: Package Includes -->
         <div class="section-header">
             <h2 class="section-title">
                 <span class="lang-en">Package Includes!</span>
@@ -365,6 +401,7 @@
             </div>
         </div>
 
+        <!-- Section: Top Destinations -->
         <div class="section-header">
             <h2 class="section-title">
                 <span class="lang-en">Top Destinations & Highlights</span>
@@ -399,6 +436,7 @@
             </div>
         </div>
 
+        <!-- Section: Itinerary -->
         <div class="section-header">
             <h2 class="section-title">
                 <span class="lang-en">Ultimate 5D4N Itinerary Plan</span>
@@ -434,6 +472,7 @@
             </div>
         </div>
 
+        <!-- Booking Form Section -->
         <div class="cta-box" id="booking-section">
             <div class="cta-box-header">
                 <h2>
@@ -448,14 +487,17 @@
 
             <form action="https://formspree.io/f/xdavyaev" method="POST">
                 
+                <!-- Dynamic Travellers Container -->
                 <div id="travellers-container">
                     
+                    <!-- Original Traveller Block (Will be cloned) -->
                     <div class="traveller-block">
                         <div class="dynamic-heading">
                             <span class="lang-en t-heading">Traveller 1</span>
                             <span class="lang-ms t-heading">Penumpang 1</span>
                         </div>
 
+                        <!-- SECTION 1: Personal Info -->
                         <div class="form-section-title">
                             <span class="lang-en">1. Personal Information</span>
                             <span class="lang-ms">1. Maklumat Peribadi</span>
@@ -485,6 +527,7 @@
                             <input type="text" name="nationality[]" class="nat-input" placeholder="e.g. Malaysian" required />
                         </div>
 
+                        <!-- SECTION 2: Passport Info -->
                         <div class="form-section-title">
                             <span class="lang-en">2. Passport Details</span>
                             <span class="lang-ms">2. Maklumat Pasport</span>
@@ -507,7 +550,9 @@
                     </div>
                 </div>
 
+                <!-- Shared Flight & Contact Information -->
                 <div class="form-grid">
+                    <!-- SECTION 3: Contact Info -->
                     <div class="form-section-title">
                         <span class="lang-en">3. Primary Contact Information</span>
                         <span class="lang-ms">3. Maklumat Perhubungan Utama</span>
@@ -528,6 +573,7 @@
                         <textarea name="address" rows="3" class="addr-input" placeholder="Enter full address..." required></textarea>
                     </div>
 
+                    <!-- SECTION 4: Flight Schedule -->
                     <div class="form-section-title">
                         <span class="lang-en">4. Preferred Travel Dates</span>
                         <span class="lang-ms">4. Tarikh Perjalanan Pilihan</span>
@@ -544,6 +590,7 @@
                     </div>
                 </div>
 
+                <!-- Form Controls Section -->
                 <div class="controls-container">
                     <button type="button" class="add-btn" onclick="addTraveller()">
                         <span class="lang-en">➕ Add Another Traveller</span>
@@ -560,23 +607,84 @@
 
     </main>
 
+    <!-- YouTube IFrame API Engine -->
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script>
-        // Audio Activation Engine
-        function activateBackgroundMusic() {
-            const iframe = document.getElementById('bg-music');
-            if (iframe && iframe.src.indexOf('autoplay=1') === -1) {
-                // Append autoplay parameters to force the track to spin up
-                iframe.src += "&autoplay=1&loop=1&playlist=GwyXQO0tSW4";
+        let player;
+        let isMusicPlaying = false;
+        let musicInteracted = false;
+
+        // Initialize YouTube Player
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('bg-music', {
+                height: '0',
+                width: '0',
+                videoId: 'GwyXQO0tSW4',
+                playerVars: {
+                    'autoplay': 0,
+                    'controls': 0,
+                    'start': 303, // Starts at 5:03
+                    'loop': 1,
+                    'playlist': 'GwyXQO0tSW4'
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        // Setup global triggers once ready
+        function onPlayerReady(event) {
+            document.addEventListener('click', handleFirstInteraction);
+            document.addEventListener('touchstart', handleFirstInteraction);
+            document.addEventListener('scroll', handleFirstInteraction);
+        }
+
+        // Fire music on the user's very first action
+        function handleFirstInteraction(e) {
+            // Prevent double firing if they clicked the music button directly
+            if (e.target.closest('#music-toggle-btn')) return; 
+
+            if (!musicInteracted && player && typeof player.playVideo === 'function') {
+                musicInteracted = true;
+                player.playVideo();
                 
-                // Clean up event listeners so it only triggers once
-                document.removeEventListener('click', activateBackgroundMusic);
-                document.removeEventListener('touchstart', activateBackgroundMusic);
+                // Remove triggers so it doesn't try to restart on every click/scroll
+                document.removeEventListener('click', handleFirstInteraction);
+                document.removeEventListener('touchstart', handleFirstInteraction);
+                document.removeEventListener('scroll', handleFirstInteraction);
             }
         }
 
-        // Wait for the user to interact with the page to bypass browser security policies
-        document.addEventListener('click', activateBackgroundMusic);
-        document.addEventListener('touchstart', activateBackgroundMusic);
+        // Manual Play/Pause Toggle
+        function toggleMusic() {
+            musicInteracted = true; 
+            if (isMusicPlaying) {
+                player.pauseVideo();
+            } else {
+                player.playVideo();
+            }
+        }
+
+        // Sync Button Text with Audio State
+        function onPlayerStateChange(event) {
+            const icon = document.getElementById('music-icon');
+            const textEn = document.querySelector('.lang-en.music-text');
+            const textMs = document.querySelector('.lang-ms.music-text');
+
+            if (event.data == YT.PlayerState.PLAYING) {
+                isMusicPlaying = true;
+                icon.innerText = '⏸️';
+                textEn.innerText = 'Pause Music';
+                textMs.innerText = 'Hentikan Muzik';
+            } else if (event.data == YT.PlayerState.PAUSED || event.data == YT.PlayerState.ENDED) {
+                isMusicPlaying = false;
+                icon.innerText = '🎵';
+                textEn.innerText = 'Play Music';
+                textMs.innerText = 'Mainkan Muzik';
+            }
+        }
 
         // Language Toggle System
         function changeLanguage(lang) {
