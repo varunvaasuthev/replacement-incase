@@ -311,6 +311,10 @@
 </head>
 <body class="show-en">
 
+    <div id="audio-container" style="position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none;">
+        <iframe id="bg-music" width="0" height="0" src="https://www.youtube.com/embed/GwyXQO0tSW4?enablejsapi=1&controls=0&rel=0&showinfo=0&start=303" frameborder="0" allow="autoplay"></iframe>
+    </div>
+
     <div class="top-controls">
         <select id="langSelect" onchange="changeLanguage(this.value)">
             <option value="en">🇬🇧 English</option>
@@ -339,7 +343,6 @@
     </header>
 
     <main class="container">
-        <!-- Section: Package Includes -->
         <div class="section-header">
             <h2 class="section-title">
                 <span class="lang-en">Package Includes!</span>
@@ -362,7 +365,6 @@
             </div>
         </div>
 
-        <!-- Section: Top Destinations -->
         <div class="section-header">
             <h2 class="section-title">
                 <span class="lang-en">Top Destinations & Highlights</span>
@@ -397,7 +399,6 @@
             </div>
         </div>
 
-        <!-- Section: Itinerary -->
         <div class="section-header">
             <h2 class="section-title">
                 <span class="lang-en">Ultimate 5D4N Itinerary Plan</span>
@@ -433,7 +434,6 @@
             </div>
         </div>
 
-        <!-- Booking Form Section -->
         <div class="cta-box" id="booking-section">
             <div class="cta-box-header">
                 <h2>
@@ -448,17 +448,14 @@
 
             <form action="https://formspree.io/f/xdavyaev" method="POST">
                 
-                <!-- Dynamic Travellers Container -->
                 <div id="travellers-container">
                     
-                    <!-- Original Traveller Block (Will be cloned) -->
                     <div class="traveller-block">
                         <div class="dynamic-heading">
                             <span class="lang-en t-heading">Traveller 1</span>
                             <span class="lang-ms t-heading">Penumpang 1</span>
                         </div>
 
-                        <!-- SECTION 1: Personal Info -->
                         <div class="form-section-title">
                             <span class="lang-en">1. Personal Information</span>
                             <span class="lang-ms">1. Maklumat Peribadi</span>
@@ -488,7 +485,6 @@
                             <input type="text" name="nationality[]" class="nat-input" placeholder="e.g. Malaysian" required />
                         </div>
 
-                        <!-- SECTION 2: Passport Info -->
                         <div class="form-section-title">
                             <span class="lang-en">2. Passport Details</span>
                             <span class="lang-ms">2. Maklumat Pasport</span>
@@ -511,9 +507,7 @@
                     </div>
                 </div>
 
-                <!-- Shared Flight & Contact Information -->
                 <div class="form-grid">
-                    <!-- SECTION 3: Contact Info -->
                     <div class="form-section-title">
                         <span class="lang-en">3. Primary Contact Information</span>
                         <span class="lang-ms">3. Maklumat Perhubungan Utama</span>
@@ -534,7 +528,6 @@
                         <textarea name="address" rows="3" class="addr-input" placeholder="Enter full address..." required></textarea>
                     </div>
 
-                    <!-- SECTION 4: Flight Schedule -->
                     <div class="form-section-title">
                         <span class="lang-en">4. Preferred Travel Dates</span>
                         <span class="lang-ms">4. Tarikh Perjalanan Pilihan</span>
@@ -551,7 +544,6 @@
                     </div>
                 </div>
 
-                <!-- Form Controls Section -->
                 <div class="controls-container">
                     <button type="button" class="add-btn" onclick="addTraveller()">
                         <span class="lang-en">➕ Add Another Traveller</span>
@@ -569,6 +561,23 @@
     </main>
 
     <script>
+        // Audio Activation Engine
+        function activateBackgroundMusic() {
+            const iframe = document.getElementById('bg-music');
+            if (iframe && iframe.src.indexOf('autoplay=1') === -1) {
+                // Append autoplay parameters to force the track to spin up
+                iframe.src += "&autoplay=1&loop=1&playlist=GwyXQO0tSW4";
+                
+                // Clean up event listeners so it only triggers once
+                document.removeEventListener('click', activateBackgroundMusic);
+                document.removeEventListener('touchstart', activateBackgroundMusic);
+            }
+        }
+
+        // Wait for the user to interact with the page to bypass browser security policies
+        document.addEventListener('click', activateBackgroundMusic);
+        document.addEventListener('touchstart', activateBackgroundMusic);
+
         // Language Toggle System
         function changeLanguage(lang) {
             document.body.className = 'show-' + lang;
