@@ -36,7 +36,6 @@
             position: relative;
         }
 
-        /* Top Controls Layer (Language Selector) */
         .top-controls {
             position: absolute;
             top: 20px;
@@ -57,9 +56,6 @@
             cursor: pointer;
             outline: none;
             transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 6px;
         }
 
         .top-controls select:hover {
@@ -78,7 +74,6 @@
             font-size: 1.3rem;
             max-width: 750px;
             margin: 0 auto;
-            opacity: 0.95;
             text-shadow: 0 2px 6px rgba(0,0,0,0.6);
         }
 
@@ -100,8 +95,6 @@
             display: block;
             font-weight: normal;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 2px;
         }
 
         /* --- Layout Containers --- */
@@ -125,13 +118,12 @@
             color: var(--secondary-color);
         }
 
-        /* --- Grid & Uniform Card Layouts --- */
+        /* --- Grid & Cards --- */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin-bottom: 50px;
-            align-items: stretch;
         }
 
         .card {
@@ -140,9 +132,6 @@
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.04);
             border-left: 6px solid var(--primary-color);
-            display: flex;
-            flex-direction: column;
-            box-sizing: border-box;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
@@ -155,19 +144,10 @@
             margin-top: 0;
             color: var(--primary-color);
             font-size: 1.4rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
 
-        .card p {
-            margin-bottom: 0;
-            flex-grow: 1;
-        }
-
-        /* --- Timeline Itinerary --- */
+        /* --- Timeline --- */
         .timeline {
-            position: relative;
             max-width: 850px;
             margin: 0 auto 50px auto;
         }
@@ -192,12 +172,6 @@
             color: var(--primary-color);
             font-size: 1.1rem;
             margin-bottom: 8px;
-            letter-spacing: 1px;
-        }
-
-        .timeline-item h3 {
-            margin: 0 0 10px 0;
-            font-size: 1.5rem;
         }
 
         /* --- Form & CTA Block --- */
@@ -220,6 +194,7 @@
             font-size: 2.2rem;
         }
 
+        /* Form Grids */
         .form-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -228,16 +203,33 @@
             margin: 0 auto;
         }
 
+        .traveller-block {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding-bottom: 30px;
+            margin-bottom: 20px;
+            border-bottom: 1px dashed rgba(255,255,255,0.2);
+        }
+
         .full-width { grid-column: span 2; }
         
         .form-section-title {
             grid-column: span 2;
             color: #fff;
             font-size: 1.3rem;
-            margin: 25px 0 5px 0;
+            margin: 15px 0 5px 0;
             border-bottom: 2px solid var(--primary-color);
             padding-bottom: 8px;
             text-align: left;
+        }
+
+        .dynamic-heading {
+            grid-column: span 2;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 0;
+            font-weight: bold;
         }
 
         .form-group { display: flex; flex-direction: column; text-align: left; }
@@ -251,24 +243,44 @@
             background-color: rgba(255, 255, 255, 0.08);
             color: white;
             outline: none;
-            transition: border-color 0.3s ease, background-color 0.3s ease;
+            transition: border-color 0.3s ease;
             font-family: inherit;
         }
 
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
             border-color: var(--primary-color);
-            background-color: rgba(255, 255, 255, 0.15);
         }
 
-        .form-group select option {
-            background-color: #333;
-            color: white;
-        }
+        .form-group select option { background-color: #333; color: white; }
 
-        .form-submit-container {
+        /* Buttons */
+        .controls-container {
             text-align: center;
-            grid-column: span 2;
-            margin-top: 25px;
+            max-width: 850px;
+            margin: 30px auto 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .add-btn {
+            background-color: transparent;
+            color: #fff;
+            padding: 10px 30px;
+            font-size: 1rem;
+            border-radius: 50px;
+            border: 2px solid #888;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .add-btn:hover {
+            border-color: white;
+            background-color: rgba(255,255,255,0.1);
         }
 
         .cta-btn {
@@ -280,9 +292,10 @@
             border-radius: 50px;
             border: none;
             cursor: pointer;
-            display: inline-block;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            transition: transform 0.3s ease;
             box-shadow: 0 5px 15px rgba(211, 47, 47, 0.3);
+            width: 100%;
+            max-width: 400px;
         }
 
         .cta-btn:hover {
@@ -291,15 +304,13 @@
         }
 
         @media (max-width: 600px) {
-            .form-grid { grid-template-columns: 1fr; }
-            .full-width, .form-section-title, .form-submit-container { grid-column: span 1; }
-            .hero-title h1 { font-size: 2.5rem; }
+            .form-grid, .traveller-block { grid-template-columns: 1fr; }
+            .full-width, .form-section-title, .dynamic-heading { grid-column: span 1; }
         }
     </style>
 </head>
 <body class="show-en">
 
-    <!-- Top Language Selection Menu Layout -->
     <div class="top-controls">
         <select id="langSelect" onchange="changeLanguage(this.value)">
             <option value="en">🇬🇧 English</option>
@@ -307,7 +318,6 @@
         </select>
     </div>
 
-    <!-- Header / Hero Segment -->
     <header>
         <div class="hero-title">
             <h1>
@@ -329,7 +339,6 @@
     </header>
 
     <main class="container">
-        
         <!-- Section: Package Includes -->
         <div class="section-header">
             <h2 class="section-title">
@@ -340,34 +349,16 @@
         
         <div class="grid">
             <div class="card">
-                <h3>
-                    <span class="lang-en">✈️ China Northern Airlines</span>
-                    <span class="lang-ms">✈️ Penerbangan China Northern</span>
-                </h3>
-                <p>
-                    <span class="lang-en">Round-trip economy flights with premium inflight meals and baggage allowance included.</span>
-                    <span class="lang-ms">Penerbangan pergi-balik kelas ekonomi bersama hidangan premium dan bagasi disertakan.</span>
-                </p>
+                <h3><span class="lang-en">✈️ China Northern Airlines</span><span class="lang-ms">✈️ Penerbangan China Northern</span></h3>
+                <p><span class="lang-en">Round-trip economy flights with premium inflight meals and baggage allowance included.</span><span class="lang-ms">Penerbangan pergi-balik kelas ekonomi bersama hidangan premium dan bagasi disertakan.</span></p>
             </div>
             <div class="card">
-                <h3>
-                    <span class="lang-en">🚄 Premium Logistics</span>
-                    <span class="lang-ms">🚄 Pengangkutan Premium</span>
-                </h3>
-                <p>
-                    <span class="lang-en">High-speed rail experience directly to the Great Wall & climate-controlled private coaches.</span>
-                    <span class="lang-ms">Pengalaman kereta api laju terus ke Tembok Besar & bas persiaran peribadi berhawa dingin.</span>
-                </p>
+                <h3><span class="lang-en">🚄 Premium Logistics</span><span class="lang-ms">🚄 Pengangkutan Premium</span></h3>
+                <p><span class="lang-en">High-speed rail experience directly to the Great Wall & climate-controlled private coaches.</span><span class="lang-ms">Pengalaman kereta api laju terus ke Tembok Besar & bas persiaran peribadi berhawa dingin.</span></p>
             </div>
             <div class="card">
-                <h3>
-                    <span class="lang-en">🎟️ VIP All-Access</span>
-                    <span class="lang-ms">🎟️ Akses Penuh VIP</span>
-                </h3>
-                <p>
-                    <span class="lang-en">All entry fees to designated attractions and an expert English/Malay speaking local guide.</span>
-                    <span class="lang-ms">Semua bayaran masuk tempat tarikan dan pemandu pelancong tempatan pakar dwi-bahasa.</span>
-                </p>
+                <h3><span class="lang-en">🎟️ VIP All-Access</span><span class="lang-ms">🎟️ Akses Penuh VIP</span></h3>
+                <p><span class="lang-en">All entry fees to designated attractions and an expert English/Malay speaking local guide.</span><span class="lang-ms">Semua bayaran masuk tempat tarikan dan pemandu pelancong tempatan pakar dwi-bahasa.</span></p>
             </div>
         </div>
 
@@ -381,73 +372,32 @@
 
         <div class="grid">
             <div class="card">
-                <h3>
-                    <span class="lang-en">⛰️ The Great Wall</span>
-                    <span class="lang-ms">⛰️ Tembok Besar China</span>
-                </h3>
-                <p>
-                    <span class="lang-en">Trek along the legendary, winding mountain ridges of the Mutianyu section with stunning panoramic views.</span>
-                    <span class="lang-ms">Mendaki permatang gunung legenda yang bengkak-bengkok di bahagian Mutianyu dengan pemandangan panaroma yang menakjubkan.</span>
-                </p>
+                <h3><span class="lang-en">⛰️ The Great Wall</span><span class="lang-ms">⛰️ Tembok Besar China</span></h3>
+                <p><span class="lang-en">Trek along the legendary mountain ridges of Mutianyu with stunning panoramic views.</span><span class="lang-ms">Mendaki permatang gunung legenda di bahagian Mutianyu dengan pemandangan menakjubkan.</span></p>
             </div>
-
             <div class="card">
-                <h3>
-                    <span class="lang-en">🏯 The Forbidden City</span>
-                    <span class="lang-ms">🏯 Kota Larangan</span>
-                </h3>
-                <p>
-                    <span class="lang-en">Walk through the majestic gates of the massive Imperial Palace and stand in awe of historic dynasties.</span>
-                    <span class="lang-ms">Berjalan melalui pintu gerbang megah di Istana Empayar yang luas dan hayati sejarah dinasti purba.</span>
-                </p>
+                <h3><span class="lang-en">🏯 The Forbidden City</span><span class="lang-ms">🏯 Kota Larangan</span></h3>
+                <p><span class="lang-en">Walk through the majestic gates of the massive Imperial Palace and stand in awe of historic dynasties.</span><span class="lang-ms">Berjalan melalui pintu gerbang megah di Istana Empayar yang luas dan hayati sejarah dinasti purba.</span></p>
             </div>
-
             <div class="card">
-                <h3>
-                    <span class="lang-en">🚲 Hutong & Peking Duck 🍖</span>
-                    <span class="lang-ms">🚲 Hutong & Itik Peking 🍖</span>
-                </h3>
-                <p>
-                    <span class="lang-en">Take a traditional Rickshaw ride through historic <strong>Hutong Alleys</strong> followed by an authentic <strong>Peking Duck Banquet</strong>.</span>
-                    <span class="lang-ms">Naiki beca tradisional melalui <strong>Lorong Lama Hutong</strong> diikuti dengan jamuan makan malam <strong>Itik Peking</strong> yang asli.</span>
-                </p>
+                <h3><span class="lang-en">🚲 Hutong & Peking Duck</span><span class="lang-ms">🚲 Hutong & Itik Peking</span></h3>
+                <p><span class="lang-en">Take a Rickshaw ride through historic Hutong Alleys followed by a Peking Duck Banquet.</span><span class="lang-ms">Naiki beca tradisional melalui Lorong Lama Hutong diikuti jamuan Itik Peking yang asli.</span></p>
             </div>
-
             <div class="card">
-                <h3>
-                    <span class="lang-en">🌳 The Summer Palace</span>
-                    <span class="lang-ms">🌳 Istana Musim Panas</span>
-                </h3>
-                <p>
-                    <span class="lang-en">Relax amidst the breathtaking landscapes, peaceful royal pavilions, and serene lakes of the ancient Emperors.</span>
-                    <span class="lang-ms">Bertenang di tengah-tengah landskap yang indah, paviliun diraja, dan tasik yang tenang milik Maharaja purba.</span>
-                </p>
+                <h3><span class="lang-en">🌳 The Summer Palace</span><span class="lang-ms">🌳 Istana Musim Panas</span></h3>
+                <p><span class="lang-en">Relax amidst the breathtaking landscapes, peaceful pavilions, and serene lakes of ancient Emperors.</span><span class="lang-ms">Bertenang di tengah landskap indah, paviliun diraja, dan tasik tenang milik Maharaja purba.</span></p>
             </div>
-
             <div class="card">
-                <h3>
-                    <span class="lang-en">🏟️ Olympic Landmarks</span>
-                    <span class="lang-ms">🏟️ Mercu Tanda Olimpik</span>
-                </h3>
-                <p>
-                    <span class="lang-en">Capture spectacular photographs at iconic architectural masterpieces like the Bird's Nest and the Water Cube.</span>
-                    <span class="lang-ms">Ambil foto yang menakjubkan di karya seni bina ikonik seperti Stadium Sarang Burung dan Kiub Air.</span>
-                </p>
+                <h3><span class="lang-en">🏟️ Olympic Landmarks</span><span class="lang-ms">🏟️ Mercu Tanda Olimpik</span></h3>
+                <p><span class="lang-en">Capture photographs at architectural masterpieces like the Bird's Nest and Water Cube.</span><span class="lang-ms">Ambil foto di karya seni bina ikonik seperti Stadium Sarang Burung dan Kiub Air.</span></p>
             </div>
-
             <div class="card">
-                <h3>
-                    <span class="lang-en">🎡 Universal Studios</span>
-                    <span class="lang-ms">🎡 Universal Studios Beijing</span>
-                </h3>
-                <p>
-                    <span class="lang-en">Experience an action-packed, thrilling day of blockbuster entertainment and world-class movie magic rides.</span>
-                    <span class="lang-ms">Alami hari yang penuh keriangan dengan hiburan blockbuster hebat dan tarikan taman tema bertaraf dunia.</span>
-                </p>
+                <h3><span class="lang-en">🎡 Universal Studios</span><span class="lang-ms">🎡 Universal Studios Beijing</span></h3>
+                <p><span class="lang-en">Experience an action-packed day of blockbuster entertainment and movie magic rides.</span><span class="lang-ms">Alami keriangan dengan hiburan blockbuster hebat dan tarikan taman tema bertaraf dunia.</span></p>
             </div>
         </div>
 
-        <!-- Section: 5D4N Itinerary Plan -->
+        <!-- Section: Itinerary -->
         <div class="section-header">
             <h2 class="section-title">
                 <span class="lang-en">Ultimate 5D4N Itinerary Plan</span>
@@ -457,82 +407,33 @@
 
         <div class="timeline">
             <div class="timeline-item">
-                <div class="timeline-day">
-                    <span class="lang-en">DAY 1</span>
-                    <span class="lang-ms">HARI 1</span>
-                </div>
-                <h3>
-                    <span class="lang-en">Arrival & Imperial Legends</span>
-                    <span class="lang-ms">Ketibaan & Legenda Empayar</span>
-                </h3>
-                <p>
-                    <span class="lang-en">Land via China Northern Airlines. Stand in awe at the historic <strong>Tiananmen Square</strong> and walk deep into <strong>The Forbidden City</strong>.</span>
-                    <span class="lang-ms">Tiba melalui China Northern Airlines. Berdiri di <strong>Dataran Tiananmen</strong> yang bersejarah dan jalan masuk ke <strong>Kota Larangan (The Forbidden City)</strong>.</span>
-                </p>
+                <div class="timeline-day"><span class="lang-en">DAY 1</span><span class="lang-ms">HARI 1</span></div>
+                <h3><span class="lang-en">Arrival & Imperial Legends</span><span class="lang-ms">Ketibaan & Legenda Empayar</span></h3>
+                <p><span class="lang-en">Land via China Northern Airlines. Walk deep into <strong>The Forbidden City</strong> and Tiananmen Square.</span><span class="lang-ms">Tiba melalui penerbangan. Jalan masuk ke <strong>Kota Larangan</strong> dan Dataran Tiananmen.</span></p>
             </div>
-
             <div class="timeline-item">
-                <div class="timeline-day">
-                    <span class="lang-en">DAY 2</span>
-                    <span class="lang-ms">HARI 2</span>
-                </div>
-                <h3>
-                    <span class="lang-en">The Great Wall & Culinary Icons</span>
-                    <span class="lang-ms">Tembok Besar & Ikon Kulinari</span>
-                </h3>
-                <p>
-                    <span class="lang-en">Take a premium high-speed rail experience to <strong>The Great Wall (Mutianyu)</strong>. In the evening, treat your tastebuds to a world-famous, authentic <strong>Peking Duck</strong> dinner.</span>
-                    <span class="lang-ms">Alami kereta api laju ke <strong>Tembok Besar (Mutianyu)</strong>. Di sebelah malam, nikmati hidangan asli <strong>Itik Peking (Peking Duck)</strong> yang terkenal di dunia.</span>
-                </p>
+                <div class="timeline-day"><span class="lang-en">DAY 2</span><span class="lang-ms">HARI 2</span></div>
+                <h3><span class="lang-en">The Great Wall & Culinary Icons</span><span class="lang-ms">Tembok Besar & Ikon Kulinari</span></h3>
+                <p><span class="lang-en">High-speed rail to <strong>The Great Wall</strong>. Evening authentic <strong>Peking Duck</strong> dinner.</span><span class="lang-ms">Kereta api laju ke <strong>Tembok Besar</strong>. Makan malam <strong>Itik Peking</strong> di sebelah malam.</span></p>
             </div>
-
             <div class="timeline-item">
-                <div class="timeline-day">
-                    <span class="lang-en">DAY 3</span>
-                    <span class="lang-ms">HARI 3</span>
-                </div>
-                <h3>
-                    <span class="lang-en">Movie Magic & Thrills</span>
-                    <span class="lang-ms">Keajaiban Filem & Keriangan</span>
-                </h3>
-                <p>
-                    <span class="lang-en">Spend a full, action-packed day inside <strong>Universal Studios Beijing</strong> exploring cinematic worlds and rides.</span>
-                    <span class="lang-ms">Satu hari penuh di <strong>Universal Studios Beijing</strong> menerokai dunia perfileman dan pelbagai permainan menakjubkan.</span>
-                </p>
+                <div class="timeline-day"><span class="lang-en">DAY 3</span><span class="lang-ms">HARI 3</span></div>
+                <h3><span class="lang-en">Movie Magic & Thrills</span><span class="lang-ms">Keajaiban Filem & Keriangan</span></h3>
+                <p><span class="lang-en">Spend a full day exploring <strong>Universal Studios Beijing</strong> cinematic worlds.</span><span class="lang-ms">Satu hari penuh di <strong>Universal Studios Beijing</strong> menerokai pelbagai permainan.</span></p>
             </div>
-
             <div class="timeline-item">
-                <div class="timeline-day">
-                    <span class="lang-en">DAY 4</span>
-                    <span class="lang-ms">HARI 4</span>
-                </div>
-                <h3>
-                    <span class="lang-en">Royal Retreats & Cultural Alleys</span>
-                    <span class="lang-ms">Keindahan Diraja & Lorong Budaya</span>
-                </h3>
-                <p>
-                    <span class="lang-en">Stroll across the serene lakes of <strong>The Summer Palace</strong>. Later, climb onto a traditional Rickshaw for a culture-filled ride through local <strong>Hutong Alleyway Tours</strong>.</span>
-                    <span class="lang-ms">Bersiar-siar di sekitar tasik yang tenang di <strong>Istana Musim Panas (The Summer Palace)</strong>. Kemudian, naiki beca tradisional untuk menerokai warisan budaya di sekitar lorong kuno <strong>Hutong</strong>.</span>
-                </p>
+                <div class="timeline-day"><span class="lang-en">DAY 4</span><span class="lang-ms">HARI 4</span></div>
+                <h3><span class="lang-en">Royal Retreats & Cultural Alleys</span><span class="lang-ms">Keindahan Diraja & Lorong Budaya</span></h3>
+                <p><span class="lang-en">Stroll <strong>The Summer Palace</strong> lakes, then a Rickshaw ride through local <strong>Hutong Alleys</strong>.</span><span class="lang-ms">Bersiar-siar di <strong>Istana Musim Panas</strong>, kemudian naiki beca menerokai lorong <strong>Hutong</strong>.</span></p>
             </div>
-
             <div class="timeline-item">
-                <div class="timeline-day">
-                    <span class="lang-en">DAY 5</span>
-                    <span class="lang-ms">HARI 5</span>
-                </div>
-                <h3>
-                    <span class="lang-en">Modern Landmarks & Farewell</span>
-                    <span class="lang-ms">Ikon Moden & Selamat Tinggal</span>
-                </h3>
-                <p>
-                    <span class="lang-en">Visit Beijing's breathtaking modern architecture at the <strong>Olympic Landmarks</strong> (The Bird's Nest & Water Cube) for photos before heading to the airport.</span>
-                    <span class="lang-ms">Lawati seni bina moden ikonik di <strong>Landmark Olimpik</strong> (Sarang Burung & Kiub Air) untuk sesi bergambar sebelum menuju ke lapangan terbang untuk pulang.</span>
-                </p>
+                <div class="timeline-day"><span class="lang-en">DAY 5</span><span class="lang-ms">HARI 5</span></div>
+                <h3><span class="lang-en">Modern Landmarks & Farewell</span><span class="lang-ms">Ikon Moden & Selamat Tinggal</span></h3>
+                <p><span class="lang-en">Visit the <strong>Olympic Landmarks</strong> for photos before heading to the airport.</span><span class="lang-ms">Lawati <strong>Landmark Olimpik</strong> untuk bergambar sebelum menuju ke lapangan terbang.</span></p>
             </div>
         </div>
 
-        <!-- Call to Action Booking Form Section -->
+        <!-- Booking Form Section -->
         <div class="cta-box" id="booking-section">
             <div class="cta-box-header">
                 <h2>
@@ -545,98 +446,118 @@
                 </p>
             </div>
 
-            <form action="https://formspree.io/f/xdavyaev" method="POST" class="form-grid">
+            <form action="https://formspree.io/f/xdavyaev" method="POST">
+                
+                <!-- Dynamic Travellers Container -->
+                <div id="travellers-container">
+                    
+                    <!-- Original Traveller Block (Will be cloned) -->
+                    <div class="traveller-block">
+                        <div class="dynamic-heading">
+                            <span class="lang-en t-heading">Traveller 1</span>
+                            <span class="lang-ms t-heading">Penumpang 1</span>
+                        </div>
 
-                <!-- SECTION 1: Personal Info -->
-                <div class="form-section-title">
-                    <span class="lang-en">1. Personal Information</span>
-                    <span class="lang-ms">1. Maklumat Peribadi</span>
+                        <!-- SECTION 1: Personal Info -->
+                        <div class="form-section-title">
+                            <span class="lang-en">1. Personal Information</span>
+                            <span class="lang-ms">1. Maklumat Peribadi</span>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label><span class="lang-en">Full Name (As in Passport)</span><span class="lang-ms">Nama Penuh (Seperti Pasport)</span></label>
+                            <input type="text" name="full_name[]" placeholder="John Doe" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label><span class="lang-en">Gender</span><span class="lang-ms">Jantina</span></label>
+                            <select name="gender[]" required>
+                                <option value="" disabled selected class="gender-placeholder">-- Select Option --</option>
+                                <option value="Male" class="gender-m">Male</option>
+                                <option value="Female" class="gender-f">Female</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label><span class="lang-en">Date of Birth</span><span class="lang-ms">Tarikh Lahir</span></label>
+                            <input type="date" name="dob[]" required />
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label><span class="lang-en">Nationality</span><span class="lang-ms">Kewarganegaraan</span></label>
+                            <input type="text" name="nationality[]" class="nat-input" placeholder="e.g. Malaysian" required />
+                        </div>
+
+                        <!-- SECTION 2: Passport Info -->
+                        <div class="form-section-title">
+                            <span class="lang-en">2. Passport Details</span>
+                            <span class="lang-ms">2. Maklumat Pasport</span>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label><span class="lang-en">Passport Number</span><span class="lang-ms">Nombor Pasport</span></label>
+                            <input type="text" name="passport_number[]" placeholder="A12345678" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label><span class="lang-en">Date of Issue</span><span class="lang-ms">Tarikh Dikeluarkan</span></label>
+                            <input type="date" name="passport_issue[]" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label><span class="lang-en">Date of Expiry</span><span class="lang-ms">Tarikh Tamat Tempoh</span></label>
+                            <input type="date" name="passport_expiry[]" required />
+                        </div>
+                    </div>
                 </div>
 
-                <div class="form-group full-width">
-                    <label for="full_name"><span class="lang-en">Full Name (As in Passport)</span><span class="lang-ms">Nama Penuh (Seperti dalam Pasport)</span></label>
-                    <input type="text" id="full_name" name="full_name" placeholder="John Doe" required />
+                <!-- Shared Flight & Contact Information -->
+                <div class="form-grid">
+                    <!-- SECTION 3: Contact Info -->
+                    <div class="form-section-title">
+                        <span class="lang-en">3. Primary Contact Information</span>
+                        <span class="lang-ms">3. Maklumat Perhubungan Utama</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label><span class="lang-en">Email Address</span><span class="lang-ms">Alamat Emel</span></label>
+                        <input type="email" name="_replyto" placeholder="johndoe@example.com" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label><span class="lang-en">Phone Number</span><span class="lang-ms">Nombor Telefon</span></label>
+                        <input type="tel" name="phone" placeholder="+60123456789" required />
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label><span class="lang-en">Current Home Address</span><span class="lang-ms">Alamat Kediaman Semasa</span></label>
+                        <textarea name="address" rows="3" class="addr-input" placeholder="Enter full address..." required></textarea>
+                    </div>
+
+                    <!-- SECTION 4: Flight Schedule -->
+                    <div class="form-section-title">
+                        <span class="lang-en">4. Preferred Travel Dates</span>
+                        <span class="lang-ms">4. Tarikh Perjalanan Pilihan</span>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label><span class="lang-en">Expected Arrival Date</span><span class="lang-ms">Tarikh Ketibaan Dijangka</span></label>
+                        <input type="date" name="arrival_date" required />
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label><span class="lang-en">Expected Departure Date</span><span class="lang-ms">Tarikh Berlepas Dijangka</span></label>
+                        <input type="date" name="departure_date" required />
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="gender"><span class="lang-en">Gender</span><span class="lang-ms">Jantina</span></label>
-                    <select id="gender" name="gender" required>
-                        <option value="" disabled selected id="gender_placeholder">-- Select Option --</option>
-                        <option value="Male" id="gender_m">Male</option>
-                        <option value="Female" id="gender_f">Female</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="dob"><span class="lang-en">Date of Birth</span><span class="lang-ms">Tarikh Lahir</span></label>
-                    <input type="date" id="dob" name="dob" required />
-                </div>
-
-                <div class="form-group full-width">
-                    <label for="nationality"><span class="lang-en">Nationality</span><span class="lang-ms">Kewarganegaraan</span></label>
-                    <input type="text" id="nationality" name="nationality" placeholder="e.g. Malaysian" required />
-                </div>
-
-                <!-- SECTION 2: Passport Info -->
-                <div class="form-section-title">
-                    <span class="lang-en">2. Passport Details</span>
-                    <span class="lang-ms">2. Maklumat Pasport</span>
-                </div>
-
-                <div class="form-group full-width">
-                    <label for="passport_number"><span class="lang-en">Passport Number</span><span class="lang-ms">Nombor Pasport</span></label>
-                    <input type="text" id="passport_number" name="passport_number" placeholder="A12345678" required />
-                </div>
-
-                <div class="form-group">
-                    <label for="passport_issue"><span class="lang-en">Date of Issue</span><span class="lang-ms">Tarikh Dikeluarkan</span></label>
-                    <input type="date" id="passport_issue" name="passport_issue" required />
-                </div>
-
-                <div class="form-group">
-                    <label for="passport_expiry"><span class="lang-en">Date of Expiry</span><span class="lang-ms">Tarikh Tamat Tempoh</span></label>
-                    <input type="date" id="passport_expiry" name="passport_expiry" required />
-                </div>
-
-                <!-- SECTION 3: Contact Info -->
-                <div class="form-section-title">
-                    <span class="lang-en">3. Contact Information</span>
-                    <span class="lang-ms">3. Maklumat Perhubungan</span>
-                </div>
-
-                <div class="form-group">
-                    <label for="email"><span class="lang-en">Email Address</span><span class="lang-ms">Alamat Emel</span></label>
-                    <input type="email" id="email" name="_replyto" placeholder="johndoe@example.com" required />
-                </div>
-
-                <div class="form-group">
-                    <label for="phone"><span class="lang-en">Phone Number</span><span class="lang-ms">Nombor Telefon</span></label>
-                    <input type="tel" id="phone" name="phone" placeholder="+60123456789" required />
-                </div>
-
-                <div class="form-group full-width">
-                    <label for="address"><span class="lang-en">Current Home Address</span><span class="lang-ms">Alamat Kediaman Semasa</span></label>
-                    <textarea id="address" name="address" rows="3" placeholder="Enter full address..." required></textarea>
-                </div>
-
-                <!-- SECTION 4: Flight Schedule -->
-                <div class="form-section-title">
-                    <span class="lang-en">4. Flight Schedule</span>
-                    <span class="lang-ms">4. Jadual Penerbangan</span>
-                </div>
-
-                <div class="form-group full-width">
-                    <label for="arrival_date"><span class="lang-en">Expected Arrival Date</span><span class="lang-ms">Tarikh Ketibaan Dijangka</span></label>
-                    <input type="date" id="arrival_date" name="arrival_date" required />
-                </div>
-
-                <div class="form-group full-width">
-                    <label for="departure_date"><span class="lang-en">Expected Departure Date</span><span class="lang-ms">Tarikh Berlepas Dijangka</span></label>
-                    <input type="date" id="departure_date" name="departure_date" required />
-                </div>
-
-                <!-- Submit Button -->
-                <div class="form-submit-container">
+                <!-- Form Controls Section -->
+                <div class="controls-container">
+                    <button type="button" class="add-btn" onclick="addTraveller()">
+                        <span class="lang-en">➕ Add Another Traveller</span>
+                        <span class="lang-ms">➕ Tambah Penumpang Lain</span>
+                    </button>
+                    
                     <button type="submit" class="cta-btn">
                         <span class="lang-en">Submit Application & Book Now</span>
                         <span class="lang-ms">Hantar Permohonan & Tempah Sekarang</span>
@@ -647,35 +568,57 @@
 
     </main>
 
-    <!-- App Engine JavaScript -->
     <script>
+        // Language Toggle System
         function changeLanguage(lang) {
-            // Adjust current body engine context
             document.body.className = 'show-' + lang;
             
-            // Dynamic form configuration elements
             const pageTitle = document.getElementById('page-title');
-            const genderPlaceholder = document.getElementById('gender_placeholder');
-            const genderM = document.getElementById('gender_m');
-            const genderF = document.getElementById('gender_f');
-            const inputNat = document.getElementById('nationality');
-            const inputAddr = document.getElementById('address');
-            
             if(lang === 'ms') {
                 pageTitle.innerText = "Pakej Pelancongan 5H4M Utama Beijing";
-                genderPlaceholder.innerText = "-- Pilih Jantina --";
-                genderM.innerText = "Lelaki";
-                genderF.innerText = "Perempuan";
-                inputNat.setAttribute('placeholder', 'cth. Warganegara Malaysia');
-                inputAddr.setAttribute('placeholder', 'Masukkan alamat penuh...');
             } else {
                 pageTitle.innerText = "Beijing 5D4N Ultimate Tour Package";
-                genderPlaceholder.innerText = "-- Select Option --";
-                genderM.innerText = "Male";
-                genderF.innerText = "Female";
-                inputNat.setAttribute('placeholder', 'e.g. Malaysian');
-                inputAddr.setAttribute('placeholder', 'Enter full address...');
             }
+            
+            document.querySelectorAll('.nat-input').forEach(el => {
+                el.placeholder = lang === 'ms' ? 'cth. Warganegara Malaysia' : 'e.g. Malaysian';
+            });
+            document.querySelectorAll('.addr-input').forEach(el => {
+                el.placeholder = lang === 'ms' ? 'Masukkan alamat penuh...' : 'Enter full address...';
+            });
+            document.querySelectorAll('.gender-placeholder').forEach(el => {
+                el.innerText = lang === 'ms' ? '-- Pilih Jantina --' : '-- Select Option --';
+            });
+            document.querySelectorAll('.gender-m').forEach(el => {
+                el.innerText = lang === 'ms' ? 'Lelaki' : 'Male';
+            });
+            document.querySelectorAll('.gender-f').forEach(el => {
+                el.innerText = lang === 'ms' ? 'Perempuan' : 'Female';
+            });
+        }
+
+        // Dynamic Add Traveller System
+        let travellerCount = 1;
+        
+        function addTraveller() {
+            travellerCount++;
+            const container = document.getElementById('travellers-container');
+            const originalBlock = document.querySelector('.traveller-block'); 
+            
+            const clone = originalBlock.cloneNode(true);
+            
+            const headingEn = clone.querySelector('.lang-en.t-heading');
+            const headingMs = clone.querySelector('.lang-ms.t-heading');
+            if(headingEn) headingEn.innerText = "Traveller " + travellerCount;
+            if(headingMs) headingMs.innerText = "Penumpang " + travellerCount;
+
+            const inputs = clone.querySelectorAll('input, select');
+            inputs.forEach(input => {
+                input.value = '';
+            });
+
+            container.appendChild(clone);
+            changeLanguage(document.getElementById('langSelect').value);
         }
     </script>
 </body>
